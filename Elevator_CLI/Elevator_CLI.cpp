@@ -13,4 +13,5 @@ int main()
     elevator.moveToFloor(4);
     elevator.moveToFloor(2);
     elevator.moveToFloor(1);
+    cout << elevator.checkPrecision()<<endl;
 }

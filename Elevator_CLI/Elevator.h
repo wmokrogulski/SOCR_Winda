@@ -10,17 +10,17 @@
 
 #include "Call.h"
 
-const double V_NOM = 1;
-const double A_NOM = 1;
-const double J_NOM = 1;
+const double V_NOM = 1; // m/s
+const double A_NOM = 1; // m/s^2
+const double J_NOM = 1; // m/s^3
 
-const double CABIN_WEIGHT = 800;
-const double COUNTERWEIGHT = 1200;
+const double CABIN_WEIGHT = 800; // kg
+const double COUNTERWEIGHT = 1200; // kg
 
-const double FLOOR_HEIGHT = 2.5;
+const double FLOOR_HEIGHT = 2.5; // m
 const int NUM_OF_FLOORS = 5;
 
-const int CYCLE_TIME = 10;
+const int CYCLE_TIME = 10; // ms
 
 class Elevator
 {
@@ -54,6 +54,8 @@ public:
 	void moveDownC(double d);
 	void testMove(double d);
 	void moveToFloor(int floor);
+	void simpleMoveToFloor(int floor);
+	void advMoveToFloor(int floor);
 	void openDoors();
 	void log();
 	void openLog();
@@ -61,5 +63,6 @@ public:
 	void enableLog();
 	void disableLog();
 	int checkFloor();
+	double checkPrecision();
 };
 

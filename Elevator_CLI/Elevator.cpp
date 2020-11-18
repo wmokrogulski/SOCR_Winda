@@ -149,7 +149,7 @@ void Elevator::moveUpA(double d)
 	double t6 = this->timePassed + (d / this->vn) + (this->vn / this->an);
 	double t7 = this->timePassed + (d / this->vn) + (this->vn / this->an) + (this->an / this->jn);
 	this->j = this->jn;
-	while (this->timePassed < t1)
+	while (this->timePassed <= t1)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -158,7 +158,7 @@ void Elevator::moveUpA(double d)
 		this->log();
 	}
 	this->j = 0;
-	while (this->timePassed < t2)
+	while (this->timePassed <= t2)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstAcc(this->cycleTime);
@@ -167,7 +167,7 @@ void Elevator::moveUpA(double d)
 		this->log();
 	}
 	this->j = -this->jn;
-	while (this->timePassed < t3)
+	while (this->timePassed <= t3)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -176,7 +176,7 @@ void Elevator::moveUpA(double d)
 		this->log();
 	}
 	this->j = 0;
-	while (this->timePassed < t4)
+	while (this->timePassed <= t4)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstVel(this->cycleTime);
@@ -185,7 +185,7 @@ void Elevator::moveUpA(double d)
 		this->log();
 	}
 	this->j = -this->jn;
-	while (this->timePassed < t5)
+	while (this->timePassed <= t5)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -194,7 +194,7 @@ void Elevator::moveUpA(double d)
 		this->log();
 	}
 	this->j = 0;
-	while (this->timePassed < t6)
+	while (this->timePassed <= t6)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstAcc(this->cycleTime);
@@ -203,7 +203,7 @@ void Elevator::moveUpA(double d)
 		this->log();
 	}
 	this->j = this->jn;
-	while (this->timePassed < t7)
+	while (this->timePassed <= t7)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -227,7 +227,7 @@ void Elevator::moveDownA(double d)
 	double t6 = this->timePassed + (d / this->vn) + (this->vn / this->an);
 	double t7 = this->timePassed + (d / this->vn) + (this->vn / this->an) + (this->an / this->jn);
 	this->j = -this->jn;
-	while (this->timePassed < t1)
+	while (this->timePassed <= t1)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -236,7 +236,7 @@ void Elevator::moveDownA(double d)
 		this->log();
 	}
 	this->j = 0;
-	while (this->timePassed < t2)
+	while (this->timePassed <= t2)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstAcc(this->cycleTime);
@@ -245,7 +245,7 @@ void Elevator::moveDownA(double d)
 		this->log();
 	}
 	this->j = this->jn;
-	while (this->timePassed < t3)
+	while (this->timePassed <= t3)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -254,7 +254,7 @@ void Elevator::moveDownA(double d)
 		this->log();
 	}
 	this->j = 0;
-	while (this->timePassed < t4)
+	while (this->timePassed <= t4)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstVel(this->cycleTime);
@@ -263,7 +263,7 @@ void Elevator::moveDownA(double d)
 		this->log();
 	}
 	this->j = this->jn;
-	while (this->timePassed < t5)
+	while (this->timePassed <= t5)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -272,7 +272,7 @@ void Elevator::moveDownA(double d)
 		this->log();
 	}
 	this->j = 0;
-	while (this->timePassed < t6)
+	while (this->timePassed <= t6)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstAcc(this->cycleTime);
@@ -281,7 +281,7 @@ void Elevator::moveDownA(double d)
 		this->log();
 	}
 	this->j = -this->jn;
-	while (this->timePassed < t7)
+	while (this->timePassed <= t7)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -306,7 +306,7 @@ void Elevator::moveUpB(double d)
 
 	this->log();
 	this->j = this->jn;
-	while (this->timePassed < t1)
+	while (this->timePassed <= t1)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -315,7 +315,7 @@ void Elevator::moveUpB(double d)
 		this->log();
 	}
 	this->j = 0;
-	while (this->timePassed < t2)
+	while (this->timePassed <= t2)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstAcc(this->cycleTime);
@@ -324,7 +324,7 @@ void Elevator::moveUpB(double d)
 		this->log();
 	}
 	this->j = -this->jn;
-	while (this->timePassed < t3)
+	while (this->timePassed <= t3)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -333,7 +333,7 @@ void Elevator::moveUpB(double d)
 		this->log();
 	}
 	this->j = 0;
-	while (this->timePassed < t4)
+	while (this->timePassed <= t4)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstAcc(this->cycleTime);
@@ -342,7 +342,7 @@ void Elevator::moveUpB(double d)
 		this->log();
 	}
 	this->j = this->jn;
-	while (this->timePassed < t5)
+	while (this->timePassed <= t5)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -367,7 +367,7 @@ void Elevator::moveDownB(double d)
 
 	this->log();
 	this->j = -this->jn;
-	while (this->timePassed < t1)
+	while (this->timePassed <= t1)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -376,7 +376,7 @@ void Elevator::moveDownB(double d)
 		this->log();
 	}
 	this->j = 0;
-	while (this->timePassed < t2)
+	while (this->timePassed <= t2)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstAcc(this->cycleTime);
@@ -385,7 +385,7 @@ void Elevator::moveDownB(double d)
 		this->log();
 	}
 	this->j = this->jn;
-	while (this->timePassed < t3)
+	while (this->timePassed <= t3)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -394,7 +394,7 @@ void Elevator::moveDownB(double d)
 		this->log();
 	}
 	this->j = 0;
-	while (this->timePassed < t4)
+	while (this->timePassed <= t4)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstAcc(this->cycleTime);
@@ -403,7 +403,7 @@ void Elevator::moveDownB(double d)
 		this->log();
 	}
 	this->j = -this->jn;
-	while (this->timePassed < t5)
+	while (this->timePassed <= t5)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -426,7 +426,7 @@ void Elevator::moveUpC(double d)
 
 	this->log();
 	this->j = this->jn;
-	while (this->timePassed < t1)
+	while (this->timePassed <= t1)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -435,7 +435,7 @@ void Elevator::moveUpC(double d)
 		this->log();
 	}
 	this->j = -this->jn;
-	while (this->timePassed < t2)
+	while (this->timePassed <= t2)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -444,7 +444,7 @@ void Elevator::moveUpC(double d)
 		this->log();
 	}
 	this->j = this->jn;
-	while (this->timePassed < t3)
+	while (this->timePassed <= t3)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -467,7 +467,7 @@ void Elevator::moveDownC(double d)
 
 	this->log();
 	this->j = -this->jn;
-	while (this->timePassed < t1)
+	while (this->timePassed <= t1)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -476,7 +476,7 @@ void Elevator::moveDownC(double d)
 		this->log();
 	}
 	this->j = this->jn;
-	while (this->timePassed < t2)
+	while (this->timePassed <= t2)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -485,7 +485,7 @@ void Elevator::moveDownC(double d)
 		this->log();
 	}
 	this->j = -this->jn;
-	while (this->timePassed < t3)
+	while (this->timePassed <= t3)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -510,7 +510,7 @@ void Elevator::testMove(double d)
 	printf("j = %f\na = %f\nv = %f\nh = %f\n\n", this->j, this->a, this->v, this->h);
 	this->log();
 	this->j = this->jn;
-	while (this->timePassed < t1)
+	while (this->timePassed <= t1)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -520,7 +520,7 @@ void Elevator::testMove(double d)
 		this->log();
 	}
 	this->j = -this->jn;
-	while (this->timePassed < t2)
+	while (this->timePassed <= t2)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -530,7 +530,7 @@ void Elevator::testMove(double d)
 		this->log();
 	}
 	this->j = this->jn;
-	while (this->timePassed < t3)
+	while (this->timePassed <= t3)
 	{
 		this_thread::sleep_for(this->cycleTime);
 		this->moveWithConstJerk(this->cycleTime);
@@ -547,6 +547,41 @@ void Elevator::testMove(double d)
 }
 
 void Elevator::moveToFloor(int floor)
+{
+	this->simpleMoveToFloor(floor);
+}
+
+void Elevator::simpleMoveToFloor(int floor)
+{
+	double tS = this->cycleTime.count() / 1000.;
+	if (this->floor < floor) {
+		// move Up
+		this->v = this->vn;
+		while (this->h < (this->floorHeights.at(floor))) {
+			this_thread::sleep_for(this->cycleTime);
+			this->moveWithConstVel(this->cycleTime);
+			this->checkFloor();
+			this->timePassed += this->cycleTime.count() / 1000.;
+			this->log();
+		}
+		this->v = 0;
+	}
+	else if (this->floor > floor) {
+		//move Down
+		this->v = -this->vn;
+		while (this->h > (this->floorHeights.at(floor))) {
+			this_thread::sleep_for(this->cycleTime);
+			this->moveWithConstVel(this->cycleTime);
+			this->checkFloor();
+			this->timePassed += this->cycleTime.count() / 1000.;
+			this->log();
+		}
+		this->v = 0;
+	}
+	this->openDoors();
+}
+
+void Elevator::advMoveToFloor(int floor)
 {
 	double d = this->floorHeights.at(floor) - this->floorHeights.at(this->floor);
 	if (d > 0) {
@@ -582,10 +617,9 @@ void Elevator::moveToFloor(int floor)
 void Elevator::openDoors()
 {
 	cout << "Opening doors" << endl;
-	for (int i = 0; i < 10; i++) {
-		this_thread::sleep_for(this->cycleTime);
-	}
+	this_thread::sleep_for(chrono::seconds(2));
 	cout << "Closing doors" << endl;
+	this_thread::sleep_for(chrono::seconds(2));
 }
 
 void Elevator::log()
@@ -632,4 +666,9 @@ int Elevator::checkFloor()
 		cout << "Floor: " << this->floor << endl;
 	}
 	return this->floor;
+}
+
+double Elevator::checkPrecision()
+{
+	return this->h-this->floorHeights.at(this->floor);
 }
