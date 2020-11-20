@@ -116,6 +116,17 @@ Elevator::Elevator(int numFloors, double floorHeight, double vn, double an, doub
 	}
 }
 
+void Elevator::calculateInertia()
+{
+}
+
+double Elevator::calculatePower()
+{
+	double P=0;
+	P += (this->cabinWeight + this->passengerWeight - this->counterWeight) * GRAVITY * this->v;
+	P += (this->cabinWeight + this->passengerWeight + this->counterWeight) * this->v * this->a;
+}
+
 void Elevator::moveWithConstJerk(chrono::milliseconds timeStep)
 {
 	double tS = timeStep.count() / 1000.;
@@ -135,6 +146,12 @@ void Elevator::moveWithConstVel(chrono::milliseconds timeStep)
 {
 	double tS = timeStep.count() / 1000.;
 	this->h += tS * this->v;
+}
+
+void Elevator::addCall(Call call)
+{
+	this->passengerWeight += call.getWeight();
+	this->elevatorCalls.push_back(call);
 }
 
 void Elevator::moveUpA(double d)
@@ -549,6 +566,16 @@ void Elevator::testMove(double d)
 void Elevator::moveToFloor(int floor)
 {
 	this->simpleMoveToFloor(floor);
+	this->openDoors();
+	for (int i = 0; i < this->elevatorCalls.size(); i++) {
+		if (this->elevatorCalls.at(i).getFloor() == floor) {
+			cout << this->elevatorCalls.at(i).getName() << " leaves the elevator." << endl;
+			this->passengerWeight -= this->elevatorCalls.at(i).getWeight();
+			this->elevatorCalls.erase(this->elevatorCalls.begin() + i);
+			this_thread::sleep_for(chrono::milliseconds(50));
+		}
+	}
+	this->closeDoors();
 }
 
 void Elevator::simpleMoveToFloor(int floor)
@@ -578,7 +605,6 @@ void Elevator::simpleMoveToFloor(int floor)
 		}
 		this->v = 0;
 	}
-	this->openDoors();
 }
 
 void Elevator::advMoveToFloor(int floor)
@@ -611,13 +637,15 @@ void Elevator::advMoveToFloor(int floor)
 			this->moveDownC(d);
 		}
 	}
-	this->openDoors();
 }
 
 void Elevator::openDoors()
 {
 	cout << "Opening doors" << endl;
 	this_thread::sleep_for(chrono::seconds(2));
+}
+void Elevator::closeDoors() 
+{
 	cout << "Closing doors" << endl;
 	this_thread::sleep_for(chrono::seconds(2));
 }
@@ -671,4 +699,14 @@ int Elevator::checkFloor()
 double Elevator::checkPrecision()
 {
 	return this->h-this->floorHeights.at(this->floor);
+}
+
+vector<Call> Elevator::getCalls()
+{
+	return this->elevatorCalls;
+}
+
+int Elevator::getMaxFloor()
+{
+	return (this->floorHeights.size())-1;
 }

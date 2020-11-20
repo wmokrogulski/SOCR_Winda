@@ -10,6 +10,8 @@
 
 #include "Call.h"
 
+const double GRAVITY = 9.81; // m/s^2
+
 const double V_NOM = 1; // m/s
 const double A_NOM = 1; // m/s^2
 const double J_NOM = 1; // m/s^3
@@ -28,6 +30,7 @@ private:
 	bool logEnabled;
 	double h, v, a, j;
 	double vn, an, jn;
+	//double inertia;
 	double cabinWeight, counterWeight;
 	double passengerWeight;
 	double timePassed;
@@ -43,9 +46,12 @@ public:
 	Elevator(int numFloors, double floorHeight);
 	Elevator(int numFloors, double floorHeight, double vn, double an, double jn);
 	Elevator(int numFloors, double floorHeight, double vn, double an, double jn, double cabinWeight, double counterWeight);
+	void calculateInertia();
+	double calculatePower();
 	void moveWithConstJerk(chrono::milliseconds timeStep);
 	void moveWithConstAcc(chrono::milliseconds timeStep);
 	void moveWithConstVel(chrono::milliseconds timeStep);
+	void addCall(Call call);
 	void moveUpA(double d);
 	void moveDownA(double d);
 	void moveUpB(double d);
@@ -57,6 +63,7 @@ public:
 	void simpleMoveToFloor(int floor);
 	void advMoveToFloor(int floor);
 	void openDoors();
+	void closeDoors();
 	void log();
 	void openLog();
 	void closeLog();
@@ -64,5 +71,7 @@ public:
 	void disableLog();
 	int checkFloor();
 	double checkPrecision();
+	vector<Call> getCalls();
+	int getMaxFloor();
 };
 

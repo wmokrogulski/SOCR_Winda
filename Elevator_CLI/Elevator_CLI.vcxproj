@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="Call.cpp" />
     <ClCompile Include="Elevator.cpp" />
+    <ClCompile Include="ElevatorController.cpp" />
     <ClCompile Include="Elevator_CLI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Call.h" />
     <ClInclude Include="Elevator.h" />
+    <ClInclude Include="ElevatorController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

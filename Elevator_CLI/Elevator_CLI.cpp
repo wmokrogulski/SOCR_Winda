@@ -1,17 +1,22 @@
 #include <iostream>
 #include "Call.h"
 #include "Elevator.h"
+#include "ElevatorController.h"
 
 using namespace std;
 
 int main()
 {
     cout << "Elevator\n";
-    Elevator elevator=Elevator(5,2.5,2,1,1);
-    elevator.enableLog();
-    elevator.moveToFloor(3);
-    elevator.moveToFloor(4);
-    elevator.moveToFloor(2);
-    elevator.moveToFloor(1);
-    cout << elevator.checkPrecision()<<endl;
+    ElevatorController ec = ElevatorController(Elevator(5, 2.5, 2, 1, 1));
+    ec.enableLog();
+    ec.activate();
+    ec.addCall(Call(4));
+    ec.addCall(Call(3));
+    ec.addCall(Call(2));
+    ec.addCall(Call(3));
+    ec.addCall(Call(1));
+    ec.addCall(Call(0));
+    ec.deactivate();
+    return 0;
 }

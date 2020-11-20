@@ -13,5 +13,8 @@ public:
 	Call(int floor);
 	Call(int floor, double weight);
 	Call(int floor, double weight, string name);
+	double getWeight();
+	int getFloor();
+	string getName();
 };
 
