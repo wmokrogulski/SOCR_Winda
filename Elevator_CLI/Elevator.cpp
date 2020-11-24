@@ -572,6 +572,7 @@ void Elevator::moveToFloor(int floor)
 			cout << this->elevatorCalls.at(i).getName() << " leaves the elevator." << endl;
 			this->passengerWeight -= this->elevatorCalls.at(i).getWeight();
 			this->elevatorCalls.erase(this->elevatorCalls.begin() + i);
+			cout << this->elevatorCalls.size() << " passengers in the elevator" << endl;
 			this_thread::sleep_for(chrono::milliseconds(50));
 		}
 	}

@@ -20,5 +20,6 @@ public:
 	void enableLog();
 	void activate();
 	void deactivate();
+	void testCalls();
 };
 

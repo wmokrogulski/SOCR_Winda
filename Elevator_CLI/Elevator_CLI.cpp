@@ -8,15 +8,12 @@ using namespace std;
 int main()
 {
     cout << "Elevator\n";
-    ElevatorController ec = ElevatorController(Elevator(5, 2.5, 2, 1, 1));
+    Elevator e(5);
+    e.enableLog();
+    e.advMoveToFloor(4);
+    cout << e.checkPrecision() << endl;
+   /* ElevatorController ec = ElevatorController(Elevator(5));
     ec.enableLog();
-    ec.activate();
-    ec.addCall(Call(4));
-    ec.addCall(Call(3));
-    ec.addCall(Call(2));
-    ec.addCall(Call(3));
-    ec.addCall(Call(1));
-    ec.addCall(Call(0));
-    ec.deactivate();
+    ec.testCalls();*/
     return 0;
 }

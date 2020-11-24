@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -9,6 +10,7 @@ private:
 	string name;
 	double weight;
 	int floor;
+	int callTime;
 public:
 	Call(int floor);
 	Call(int floor, double weight);
@@ -16,5 +18,6 @@ public:
 	double getWeight();
 	int getFloor();
 	string getName();
+	int getCallTime();
 };
 

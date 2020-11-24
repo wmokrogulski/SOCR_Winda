@@ -2,6 +2,7 @@
 
 Call::Call(int floor)
 {
+    this->callTime = clock();
     this->floor = floor;
     this->name = "Stefan";
     this->weight = 80;
@@ -9,6 +10,7 @@ Call::Call(int floor)
 
 Call::Call(int floor, double weight)
 {
+    this->callTime = clock();
     this->floor = floor;
     this->name = "Stefan";
     this->weight = weight;
@@ -16,6 +18,7 @@ Call::Call(int floor, double weight)
 
 Call::Call(int floor, double weight, string name)
 {
+    this->callTime = clock();
     this->floor = floor;
     this->name = name;
     this->weight = weight;
@@ -34,4 +37,9 @@ int Call::getFloor()
 string Call::getName()
 {
     return this->name;
+}
+
+int Call::getCallTime()
+{
+    return this->callTime;
 }

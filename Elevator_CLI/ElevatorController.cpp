@@ -16,7 +16,6 @@ void ElevatorController::closestCallAlgorithm(vector<Call> calls)
 {
 	// HERE GOES THE CLOSEST CALL ALGORITHM
 	for (int i = 0; i <= this->elevator.getMaxFloor(); i++) {
-
 	}
 }
 
@@ -68,15 +67,30 @@ void ElevatorController::enableLog()
 void ElevatorController::activate()
 {
 	this->active = true;
-	this->operation=thread(&ElevatorController::operate,this);
+	this->operation = thread(&ElevatorController::operate, this);
 }
 
 void ElevatorController::deactivate()
 {
-	vector<Call> calls = this->elevator.getCalls();
-	if (calls.empty()) {
-		this->elevator.moveToFloor(calls.at(0).getFloor());
-	}
-	this->operation.join();
+	vector<Call> calls;
+	do {
+		calls = this->elevator.getCalls();
+		this_thread::sleep_for(chrono::milliseconds(200));
+	} while (!calls.empty());
 	this->active = false;
+	this->operation.join();
+}
+
+void ElevatorController::testCalls()
+{
+	this->activate();
+	this->addCall(Call(4));
+	this->addCall(Call(3));
+	this_thread::sleep_for(chrono::seconds(1));
+	this->addCall(Call(2));
+	this->addCall(Call(3));
+	this_thread::sleep_for(chrono::seconds(2));
+	this->addCall(Call(1));
+	this->addCall(Call(0));
+	this->deactivate();
 }
