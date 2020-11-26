@@ -2,6 +2,7 @@
 #include "Elevator.h"
 #include <thread>
 enum mode{closestCall, earliestCall, upDown};
+enum direction{up, down, none};
 class ElevatorController
 {
 private:

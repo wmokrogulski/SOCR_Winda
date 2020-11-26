@@ -16,6 +16,8 @@ const double V_NOM = 1; // m/s
 const double A_NOM = 1; // m/s^2
 const double J_NOM = 1; // m/s^3
 
+const double R_NOM = 1; // m
+
 const double CABIN_WEIGHT = 800; // kg
 const double COUNTERWEIGHT = 1200; // kg
 
@@ -30,7 +32,8 @@ private:
 	bool logEnabled;
 	double h, v, a, j;
 	double vn, an, jn;
-	//double inertia;
+	double r;
+	double totalEnergy;
 	double cabinWeight, counterWeight;
 	double passengerWeight;
 	double timePassed;
@@ -46,7 +49,7 @@ public:
 	Elevator(int numFloors, double floorHeight);
 	Elevator(int numFloors, double floorHeight, double vn, double an, double jn);
 	Elevator(int numFloors, double floorHeight, double vn, double an, double jn, double cabinWeight, double counterWeight);
-	void calculateInertia();
+	double calculateEnergy();
 	double calculatePower();
 	void moveWithConstJerk(chrono::milliseconds timeStep);
 	void moveWithConstAcc(chrono::milliseconds timeStep);
@@ -73,5 +76,8 @@ public:
 	double checkPrecision();
 	vector<Call> getCalls();
 	int getMaxFloor();
+	double getEnergy();
+	void setRadius(double r);
+	double getRadius();
 };
 

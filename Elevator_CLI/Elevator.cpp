@@ -10,10 +10,12 @@ Elevator::Elevator()
 	this->vn = V_NOM;
 	this->an = A_NOM;
 	this->jn = J_NOM;
+	this->r = R_NOM;
 	this->v = 0;
 	this->a = 0;
 	this->j = 0;
 	this->h = 0;
+	this->totalEnergy = 0;
 	this->floor = 0;
 	this->setFloor = NULL;
 	this->cabinWeight = CABIN_WEIGHT;
@@ -33,6 +35,8 @@ Elevator::Elevator(int numFloors)
 	this->vn = V_NOM;
 	this->an = A_NOM;
 	this->jn = J_NOM;
+	this->r = R_NOM;
+	this->totalEnergy = 0;
 	this->v = 0;
 	this->a = 0;
 	this->j = 0;
@@ -56,6 +60,8 @@ Elevator::Elevator(int numFloors, double floorHeight)
 	this->vn = V_NOM;
 	this->an = A_NOM;
 	this->jn = J_NOM;
+	this->r = R_NOM;
+	this->totalEnergy = 0;
 	this->v = 0;
 	this->a = 0;
 	this->j = 0;
@@ -79,6 +85,8 @@ Elevator::Elevator(int numFloors, double floorHeight, double vn, double an, doub
 	this->vn = vn;
 	this->an = an;
 	this->jn = jn;
+	this->r = R_NOM;
+	this->totalEnergy = 0;
 	this->v = 0;
 	this->a = 0;
 	this->j = 0;
@@ -102,6 +110,8 @@ Elevator::Elevator(int numFloors, double floorHeight, double vn, double an, doub
 	this->vn = vn;
 	this->an = an;
 	this->jn = jn;
+	this->r = R_NOM;
+	this->totalEnergy = 0;
 	this->v = 0;
 	this->a = 0;
 	this->j = 0;
@@ -116,15 +126,18 @@ Elevator::Elevator(int numFloors, double floorHeight, double vn, double an, doub
 	}
 }
 
-void Elevator::calculateInertia()
+double Elevator::calculateEnergy()
 {
+	double energy = this->calculatePower() * this->cycleTime.count();
+	this->totalEnergy += energy;
+	return this->totalEnergy;
 }
 
 double Elevator::calculatePower()
 {
-	double P=0;
-	P += (this->cabinWeight + this->passengerWeight - this->counterWeight) * GRAVITY * this->v;
-	P += (this->cabinWeight + this->passengerWeight + this->counterWeight) * this->v * this->a;
+	double power=0;
+	// TODO: Power calculation
+	return power;
 }
 
 void Elevator::moveWithConstJerk(chrono::milliseconds timeStep)
@@ -710,4 +723,19 @@ vector<Call> Elevator::getCalls()
 int Elevator::getMaxFloor()
 {
 	return (this->floorHeights.size())-1;
+}
+
+double Elevator::getEnergy()
+{
+	return this->totalEnergy;
+}
+
+void Elevator::setRadius(double r)
+{
+	this->r = r;
+}
+
+double Elevator::getRadius()
+{
+	return this->r;
 }
