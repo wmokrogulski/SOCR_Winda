@@ -7,6 +7,7 @@
 #include <fstream>
 #include <chrono>
 #include <thread>
+#include <algorithm>
 
 #include "Call.h"
 
@@ -79,5 +80,6 @@ public:
 	double getEnergy();
 	void setRadius(double r);
 	double getRadius();
+	int getFloor();
 };
 

@@ -580,11 +580,13 @@ void Elevator::moveToFloor(int floor)
 {
 	this->simpleMoveToFloor(floor);
 	this->openDoors();
+	Call call(0);
 	for (int i = 0; i < this->elevatorCalls.size(); i++) {
-		if (this->elevatorCalls.at(i).getFloor() == floor) {
-			cout << this->elevatorCalls.at(i).getName() << " leaves the elevator." << endl;
-			this->passengerWeight -= this->elevatorCalls.at(i).getWeight();
-			this->elevatorCalls.erase(this->elevatorCalls.begin() + i);
+		call = elevatorCalls.at(i);
+		if (call.getFloor() == floor) {
+			cout << call.getName() << " leaves the elevator." << endl;
+			this->passengerWeight -= call.getWeight();
+			this->elevatorCalls.erase(elevatorCalls.begin()+i);
 			cout << this->elevatorCalls.size() << " passengers in the elevator" << endl;
 			this_thread::sleep_for(chrono::milliseconds(50));
 		}
@@ -738,4 +740,9 @@ void Elevator::setRadius(double r)
 double Elevator::getRadius()
 {
 	return this->r;
+}
+
+int Elevator::getFloor()
+{
+	return this->floor;
 }

@@ -15,7 +15,55 @@ void ElevatorController::addCall(Call call)
 void ElevatorController::closestCallAlgorithm(vector<Call> calls)
 {
 	// HERE GOES THE CLOSEST CALL ALGORITHM
+	int floor = this->elevator.getFloor();
+	bool found=false;
 	for (int i = 0; i <= this->elevator.getMaxFloor(); i++) {
+		if (floor == 0) {
+			for (Call call : calls) {
+				if (call.getFloor() == floor + i) {
+					this->elevator.moveToFloor(floor + i);
+					found = true;
+					break;
+				}
+			}
+			if (found) {
+				break;
+			}
+		}
+		if (floor > 0 || floor < this->elevator.getMaxFloor()) {
+			for (Call call : calls) {
+				if (call.getFloor() == floor + i) {
+					this->elevator.moveToFloor(floor + i);
+					found = true;
+					break;
+				}
+			}
+			if (found) {
+				break;
+			}
+			for (Call call : calls) {
+				if (call.getFloor() == floor - i) {
+					this->elevator.moveToFloor(floor - i);
+					found = true;
+					break;
+				}
+			}
+			if (found) {
+				break;
+			}
+		}
+		if (floor == this->elevator.getMaxFloor()) {
+			for (Call call : calls) {
+				if (call.getFloor() == floor - i) {
+					this->elevator.moveToFloor(floor - i);
+					found = true;
+					break;
+				}
+			}
+			if (found) {
+				break;
+			}
+		}
 	}
 }
 
@@ -84,13 +132,13 @@ void ElevatorController::deactivate()
 void ElevatorController::testCalls()
 {
 	this->activate();
+	this->addCall(Call(2));
 	this->addCall(Call(4));
 	this->addCall(Call(3));
 	this_thread::sleep_for(chrono::seconds(1));
-	this->addCall(Call(2));
-	this->addCall(Call(3));
-	this_thread::sleep_for(chrono::seconds(2));
 	this->addCall(Call(1));
 	this->addCall(Call(0));
+	this_thread::sleep_for(chrono::seconds(2));
+	this->addCall(Call(3));
 	this->deactivate();
 }
