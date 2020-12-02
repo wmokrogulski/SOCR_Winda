@@ -10,6 +10,7 @@ ElevatorController::ElevatorController(Elevator elevator)
 void ElevatorController::addCall(Call call)
 {
 	this->elevator.addCall(call);
+	cout << "Added call to " << call.getFloor() << " floor" << endl;
 }
 
 void ElevatorController::closestCallAlgorithm(vector<Call> calls)
@@ -75,7 +76,57 @@ void ElevatorController::earliestCallAlgorithm(vector<Call> calls)
 
 void ElevatorController::upDownAlgorithm(vector<Call> calls)
 {
-	// HERE GOES THE UP DOWN ALGORITHM
+	// HERE GOES THE UP DOWN 
+	int floor = this->elevator.getFloor();
+	bool found = false;
+	if (this->dir == up) {
+		for (int i = 0; i <= this->elevator.getMaxFloor() - floor; i++) {
+			for (Call call : calls) {
+				if (call.getFloor() == floor + i) {
+					cout << "Going to floor " << floor + i << endl;
+					this->elevator.moveToFloor(floor + i);
+					found = true;
+					return;
+				}
+			}
+			if (found) {
+				break;
+			}
+		}
+		if (!found) {
+			this->dir = down;
+		}
+	}
+	if (this->dir == down) {
+		for (int i = 0; i <= floor; i++) {
+			for (Call call : calls) {
+				if (call.getFloor() == floor - i) {
+					cout << "Going to floor " << floor - i << endl;
+					this->elevator.moveToFloor(floor - i);
+					found = true;
+					return;
+				}
+			}
+		}
+		if (!found) {
+			this->dir = up;
+		}
+	}
+	if (this->dir == up) {
+		for (int i = 0; i <= this->elevator.getMaxFloor() - floor; i++) {
+			for (Call call : calls) {
+				if (call.getFloor() == floor + i) {
+					cout << "Going to floor " << floor + i << endl;
+					this->elevator.moveToFloor(floor + i);
+					found = true;
+					return;
+				}
+			}
+			if (found) {
+				break;
+			}
+		}
+	}
 }
 
 void ElevatorController::operate()
@@ -138,7 +189,49 @@ void ElevatorController::testCalls()
 	this_thread::sleep_for(chrono::seconds(1));
 	this->addCall(Call(1));
 	this->addCall(Call(0));
+	this->addCall(Call(2));
 	this_thread::sleep_for(chrono::seconds(2));
 	this->addCall(Call(3));
+	this->deactivate();
+}
+void ElevatorController::testCalls2()
+{
+	this->activate();
+	this->addCall(Call(1));
+	this->addCall(Call(2));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(5));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(3));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(0));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(3));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(2));
+	this->addCall(Call(1));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(4));
+	this->deactivate();
+}
+
+void ElevatorController::testCalls3()
+{
+	this->activate();
+	this->addCall(Call(3));
+	this->addCall(Call(4));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(3));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(1));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(0));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(3));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(2));
+	this->addCall(Call(5));
+	this_thread::sleep_for(chrono::seconds(5));
+	this->addCall(Call(4));
 	this->deactivate();
 }

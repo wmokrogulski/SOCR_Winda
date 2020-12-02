@@ -44,6 +44,12 @@ private:
 	chrono::milliseconds cycleTime;
 	int floor;
 	int setFloor;
+	int startTime;
+	double avgServiceTime;
+	double maxServiceTime;
+	double totalServiceTime;
+	double sumOfServiceTime;
+	int servedCalls;
 public:
 	Elevator();
 	Elevator(int numFloors);
@@ -77,9 +83,12 @@ public:
 	double checkPrecision();
 	vector<Call> getCalls();
 	int getMaxFloor();
-	double getEnergy();
 	void setRadius(double r);
 	double getRadius();
 	int getFloor();
+	double getEnergy();
+	double getAvgServiceTime();
+	double getMaxServiceTime();
+	double getTotalTime();
 };
 

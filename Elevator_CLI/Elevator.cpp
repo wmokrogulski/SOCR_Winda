@@ -18,6 +18,12 @@ Elevator::Elevator()
 	this->totalEnergy = 0;
 	this->floor = 0;
 	this->setFloor = NULL;
+	this->startTime=clock();
+	this->avgServiceTime=0;
+	this->maxServiceTime = NULL;
+	this->totalServiceTime=0;
+	this->sumOfServiceTime=0;
+	this->servedCalls=0;
 	this->cabinWeight = CABIN_WEIGHT;
 	this->counterWeight = COUNTERWEIGHT;
 	this->passengerWeight = 0;
@@ -43,6 +49,12 @@ Elevator::Elevator(int numFloors)
 	this->h = 0;
 	this->floor = 0;
 	this->setFloor = NULL;
+	this->startTime = clock();
+	this->avgServiceTime = 0;
+	this->maxServiceTime = NULL;
+	this->totalServiceTime = 0;
+	this->sumOfServiceTime = 0;
+	this->servedCalls = 0;
 	this->cabinWeight = CABIN_WEIGHT;
 	this->counterWeight = COUNTERWEIGHT;
 	this->passengerWeight = 0;
@@ -68,6 +80,12 @@ Elevator::Elevator(int numFloors, double floorHeight)
 	this->h = 0;
 	this->floor = 0;
 	this->setFloor = NULL;
+	this->startTime = clock();
+	this->avgServiceTime = 0;
+	this->maxServiceTime = NULL;
+	this->totalServiceTime = 0;
+	this->sumOfServiceTime = 0;
+	this->servedCalls = 0;
 	this->cabinWeight = CABIN_WEIGHT;
 	this->counterWeight = COUNTERWEIGHT;
 	this->passengerWeight = 0;
@@ -93,6 +111,12 @@ Elevator::Elevator(int numFloors, double floorHeight, double vn, double an, doub
 	this->h = 0;
 	this->floor = 0;
 	this->setFloor = NULL;
+	this->startTime = clock();
+	this->avgServiceTime = 0;
+	this->maxServiceTime = NULL;
+	this->totalServiceTime = 0;
+	this->sumOfServiceTime = 0;
+	this->servedCalls = 0;
 	this->cabinWeight = CABIN_WEIGHT;
 	this->counterWeight = COUNTERWEIGHT;
 	this->passengerWeight = 0;
@@ -118,6 +142,12 @@ Elevator::Elevator(int numFloors, double floorHeight, double vn, double an, doub
 	this->h = 0;
 	this->floor = 0;
 	this->setFloor = NULL;
+	this->startTime = clock();
+	this->avgServiceTime = 0;
+	this->maxServiceTime = NULL;
+	this->totalServiceTime = 0;
+	this->sumOfServiceTime = 0;
+	this->servedCalls = 0;
 	this->cabinWeight = cabinWeight;
 	this->counterWeight = counterWeight;
 	this->passengerWeight = 0;
@@ -581,16 +611,20 @@ void Elevator::moveToFloor(int floor)
 	this->simpleMoveToFloor(floor);
 	this->openDoors();
 	Call call(0);
+	vector<int> indices;
 	for (int i = 0; i < this->elevatorCalls.size(); i++) {
 		call = elevatorCalls.at(i);
 		if (call.getFloor() == floor) {
 			cout << call.getName() << " leaves the elevator." << endl;
 			this->passengerWeight -= call.getWeight();
-			this->elevatorCalls.erase(elevatorCalls.begin()+i);
-			cout << this->elevatorCalls.size() << " passengers in the elevator" << endl;
+			indices.push_back(i);
 			this_thread::sleep_for(chrono::milliseconds(50));
 		}
 	}
+	for (int i : indices) {
+		this->elevatorCalls.erase(elevatorCalls.begin() + i);
+	}
+	cout << this->elevatorCalls.size() << " passengers in the elevator." << endl;
 	this->closeDoors();
 }
 
@@ -730,6 +764,16 @@ int Elevator::getMaxFloor()
 double Elevator::getEnergy()
 {
 	return this->totalEnergy;
+}
+
+double Elevator::getAvgServiceTime()
+{
+	return this->avgServiceTime;
+}
+
+double Elevator::getMaxServiceTime()
+{
+	return this->maxServiceTime;
 }
 
 void Elevator::setRadius(double r)

@@ -15,6 +15,6 @@ int main()
     ElevatorController ec = ElevatorController(Elevator(5));
     ec.setMode(closestCall);
     ec.enableLog();
-    ec.testCalls();
+    ec.testCalls3();
     return 0;
 }

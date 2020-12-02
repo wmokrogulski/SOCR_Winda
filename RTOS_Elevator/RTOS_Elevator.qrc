@@ -1,4 +1,6 @@
 <RCC>
-    <qresource prefix="RTOS_Elevator">
+    <qresource prefix="/RTOS_Elevator">
+        <file>arrow.png</file>
+        <file>elevator.png</file>
     </qresource>
 </RCC>

@@ -2,7 +2,7 @@
 #include "Elevator.h"
 #include <thread>
 enum mode{closestCall, earliestCall, upDown};
-enum direction{up, down, none};
+enum direction{up, down};
 class ElevatorController
 {
 private:
@@ -10,6 +10,7 @@ private:
 	mode selectedAlgorithm;
 	bool active;
 	thread operation;
+	direction dir;
 public:
 	ElevatorController(Elevator elevator);
 	void addCall(Call call);
@@ -22,5 +23,7 @@ public:
 	void activate();
 	void deactivate();
 	void testCalls();
+	void testCalls2();
+	void testCalls3();
 };
 
