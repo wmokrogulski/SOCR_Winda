@@ -13,6 +13,8 @@
 
 const double GRAVITY = 9.81; // m/s^2
 
+const double INERTIA_NOM = 0.5; // kg*m^2
+
 const double V_NOM = 1; // m/s
 const double A_NOM = 1; // m/s^2
 const double J_NOM = 1; // m/s^3
@@ -31,6 +33,7 @@ class Elevator
 {
 private:
 	bool logEnabled;
+	double inertia;
 	double h, v, a, j;
 	double vn, an, jn;
 	double r;

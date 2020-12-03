@@ -7,6 +7,7 @@ Elevator::Elevator()
 	this->timePassed = 0;
 	this->logfile = NULL;
 	this->cycleTime = chrono::milliseconds(CYCLE_TIME);
+	this->inertia = INERTIA_NOM;
 	this->vn = V_NOM;
 	this->an = A_NOM;
 	this->jn = J_NOM;
@@ -38,6 +39,7 @@ Elevator::Elevator(int numFloors)
 	this->logfile = NULL;
 	this->cycleTime = chrono::milliseconds(CYCLE_TIME);
 	this->timePassed = 0;
+	this->inertia = INERTIA_NOM;
 	this->vn = V_NOM;
 	this->an = A_NOM;
 	this->jn = J_NOM;
@@ -69,6 +71,7 @@ Elevator::Elevator(int numFloors, double floorHeight)
 	this->logfile = NULL;
 	this->cycleTime = chrono::milliseconds(CYCLE_TIME);
 	this->timePassed = 0;
+	this->inertia = INERTIA_NOM;
 	this->vn = V_NOM;
 	this->an = A_NOM;
 	this->jn = J_NOM;
@@ -100,6 +103,7 @@ Elevator::Elevator(int numFloors, double floorHeight, double vn, double an, doub
 	this->logfile = NULL;
 	this->cycleTime = chrono::milliseconds(CYCLE_TIME);
 	this->timePassed = 0;
+	this->inertia = INERTIA_NOM;
 	this->vn = vn;
 	this->an = an;
 	this->jn = jn;
@@ -131,6 +135,7 @@ Elevator::Elevator(int numFloors, double floorHeight, double vn, double an, doub
 	this->logfile = NULL;
 	this->cycleTime = chrono::milliseconds(CYCLE_TIME);
 	this->timePassed = 0;
+	this->inertia = INERTIA_NOM;
 	this->vn = vn;
 	this->an = an;
 	this->jn = jn;
@@ -166,7 +171,12 @@ double Elevator::calculateEnergy()
 double Elevator::calculatePower()
 {
 	double power=0;
-	// TODO: Power calculation
+	// active resistive forces
+	power += (this->cabinWeight + this->passengerWeight - this->counterWeight) * GRAVITY * this->v;
+	// passive resistive forces
+	power += (this->cabinWeight + this->passengerWeight + this->counterWeight) * this->v * this->a;
+	// rotational resistive forces
+	power += this->inertia * (this->v / this->r) * (this->a / this->r);
 	return power;
 }
 
