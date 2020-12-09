@@ -5,7 +5,7 @@ Call::Call(int floor)
     this->callTime = clock();
     this->floor = floor;
     this->name = first_names[rand() % size(first_names)]+" "+last_names[rand()%size(last_names)];
-    this->weight = 40+(rand()%100);
+    this->weight = 75;
 }
 
 Call::Call(int floor, double weight)

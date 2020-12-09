@@ -238,9 +238,9 @@ void ElevatorController::testCalls2()
 void ElevatorController::testCalls3()
 {
 	this->activate();
-	this->addCall(Call(3,80));
-	this->addCall(Call(4,60));
-	this->addCall(Call(2,90));
+	this->addCall(Call(3));
+	this->addCall(Call(4));
+	this->addCall(Call(2));
 	this->deactivate();
 }
 
