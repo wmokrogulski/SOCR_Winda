@@ -158,6 +158,26 @@ void ElevatorController::setMode(mode algorithm)
 	this->selectedAlgorithm = algorithm;
 }
 
+double ElevatorController::getEnergy()
+{
+	return this->elevator.getEnergy();
+}
+
+double ElevatorController::getAvgServiceTime()
+{
+	return this->elevator.getAvgServiceTime();
+}
+
+double ElevatorController::getMaxServiceTime()
+{
+	return this->elevator.getMaxServiceTime();
+}
+
+double ElevatorController::getTotalTime()
+{
+	return this->elevator.getTotalTime();
+}
+
 void ElevatorController::enableLog()
 {
 	this->elevator.enableLog();
@@ -218,20 +238,16 @@ void ElevatorController::testCalls2()
 void ElevatorController::testCalls3()
 {
 	this->activate();
-	this->addCall(Call(3));
-	this->addCall(Call(4));
-	this_thread::sleep_for(chrono::seconds(5));
-	this->addCall(Call(3));
-	this_thread::sleep_for(chrono::seconds(5));
-	this->addCall(Call(1));
-	this_thread::sleep_for(chrono::seconds(5));
-	this->addCall(Call(0));
-	this_thread::sleep_for(chrono::seconds(5));
-	this->addCall(Call(3));
-	this_thread::sleep_for(chrono::seconds(5));
-	this->addCall(Call(2));
-	this->addCall(Call(5));
-	this_thread::sleep_for(chrono::seconds(5));
-	this->addCall(Call(4));
+	this->addCall(Call(3,80));
+	this->addCall(Call(4,60));
+	this->addCall(Call(2,90));
 	this->deactivate();
+}
+
+void ElevatorController::printQualityIndexes()
+{
+	cout << "Total energy: " << this->getEnergy()/1000 << " kWh" << endl;
+	cout << "Total service time: " << this->getTotalTime() << " s" << endl;
+	cout << "Average service time: " << this->getAvgServiceTime() << " s" << endl;
+	cout << "Max service time: " << this->getMaxServiceTime() << " s" << endl;
 }

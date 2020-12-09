@@ -1,8 +1,13 @@
 #pragma once
 #include <string>
 #include <ctime>
+#include <random>
+#include<iostream>
 
 using namespace std;
+
+const string first_names[] = { "Adam","Andrew","Steve","Maggy","Elisa","Joe","Anna" };
+const string last_names[] = { "Dohn","Thatcher","Pratchet","Smith","Collie" };
 
 class Call
 {
@@ -20,4 +25,3 @@ public:
 	string getName();
 	int getCallTime();
 };
-

@@ -61,9 +61,9 @@ public:
 	Elevator(int numFloors, double floorHeight, double vn, double an, double jn, double cabinWeight, double counterWeight);
 	double calculateEnergy();
 	double calculatePower();
-	void moveWithConstJerk(chrono::milliseconds timeStep);
-	void moveWithConstAcc(chrono::milliseconds timeStep);
-	void moveWithConstVel(chrono::milliseconds timeStep);
+	void moveWithConstJerk();
+	void moveWithConstAcc();
+	void moveWithConstVel();
 	void addCall(Call call);
 	void moveUpA(double d);
 	void moveDownA(double d);
@@ -71,9 +71,12 @@ public:
 	void moveDownB(double d);
 	void moveUpC(double d);
 	void moveDownC(double d);
+	void moveUp(double dist);
+	void moveDown(double dist);
 	void testMove(double d);
 	void moveToFloor(int floor);
 	void simpleMoveToFloor(int floor);
+	void myMoveToFloor(int floor);
 	void advMoveToFloor(int floor);
 	void openDoors();
 	void closeDoors();

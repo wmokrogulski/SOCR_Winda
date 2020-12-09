@@ -19,11 +19,16 @@ public:
 	void upDownAlgorithm(vector<Call> calls);
 	void operate();
 	void setMode(mode algorithm);
+	double getEnergy();
+	double getAvgServiceTime();
+	double getMaxServiceTime();
+	double getTotalTime();
 	void enableLog();
 	void activate();
 	void deactivate();
 	void testCalls();
 	void testCalls2();
 	void testCalls3();
+	void printQualityIndexes();
 };
 
