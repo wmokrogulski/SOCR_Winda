@@ -9,11 +9,6 @@ int main()
 {
     srand(time(NULL));
     cout << "Elevator\n";
-    /*Elevator e(5);
-    e.enableLog();
-    e.moveToFloor(2);*/
-    //e.advMoveToFloor(4);
-    //cout << e.checkPrecision() << endl;
     ElevatorController ec = ElevatorController(Elevator(5));
     ec.setMode(earliestCall);
     ec.enableLog();
